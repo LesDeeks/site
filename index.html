@@ -3,205 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surprise !</title>
+    <title>Accueil Arcade</title>
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
         body {
-            font-family: 'Arial', sans-serif; /* Police lisible */
-            color: #ffffff; /* Texte blanc pour un bon contraste */
-            text-align: center;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
-            background: linear-gradient(#87ceeb, #034f84 50%, #012840 100%); /* Dégradé du ciel à la mer puis profondeur marine */
-            background-size: cover;
-            height: 300vh; /* Hauteur totale pour le défilement des trois sections */
-            transition: background 0.5s ease-in-out; /* Transition fluide pour l'effet de plongeon */
-            scroll-behavior: smooth; /* Smooth scrolling behavior */
-        }
-        .container {
-            position: relative;
-            z-index: 10;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            height: 100vh; /* Chaque section occupe 100% de la vue */
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Align text towards the bottom */
             align-items: center;
+            justify-content: center;
+            height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+
+        /* Titre arcade centré */
         h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            opacity: 0;
-            animation: fadeIn 2s forwards 1s; /* Delay pour le suspense */
-            text-shadow: 2px 2px 4px #000000; /* Bordure noire autour du texte */
-        }
-        .text-section {
-            font-size: 1.7em;
-            opacity: 0;
+            font-size: 3.5em;
+            margin: 0;
+            position: absolute;
+            top: 20px;
             text-align: center;
+            width: 100%;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Deux colonnes */
+            gap: 20px;
+            max-width: 600px;
+            width: 100%;
+            padding: 100px 20px 0;
+        }
+
+        .button {
+            padding: 15px;
+            font-size: 1.5em;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Mode jour */
+        body.day-mode {
+            background-color: #f6f6f6;
+            color: #333;
+        }
+
+        .day-mode .button {
+            background-color: #3498db;
+        }
+
+        .day-mode .button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Mode nuit */
+        body.night-mode {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+
+        .night-mode .button {
+            background-color: #e74c3c;
+        }
+
+        .night-mode .button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Bouton de bascule jour/nuit */
+        .toggle-mode-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #f39c12;
+            color: white;
+            font-size: 1.5em;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100%;
-            flex-direction: column; /* Ensure text stays centered even with more content */
-            animation: fadeIn 1.5s forwards;
-            text-shadow: 2px 2px 4px #000000; /* Bordure noire autour du texte */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .text-section p {
-            margin: 0;
-            padding: 0 10px; /* Un peu de padding pour améliorer la lisibilité */
+
+        .toggle-mode-btn:hover {
+            transform: scale(1.1);
+            background-color: #e67e22;
         }
-        .heart {
-            font-size: 3em;
-            color: #e74c3c;
-            margin-top: 30px;
-            opacity: 0;
-            animation: fadeIn 3s forwards 4s; /* Delay supplémentaire pour le suspense */
-            text-shadow: 2px 2px 4px #000000; /* Bordure noire autour du texte */
+
+        /* Icône soleil et lune */
+        .toggle-mode-btn .icon {
+            font-size: 1.5em;
         }
-        .heart-bubbles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 300vh;
-            z-index: 1;
-            overflow: hidden;
-            pointer-events: none;
-            display: none; /* Les bulles sont cachées au début */
-        }
-        .bubble {
-            position: absolute;
-            bottom: -150px;
-            width: 30px;
-            height: 30px;
-            background-color: rgba(52, 152, 219, 0.7);
-            border-radius: 50%;
-            animation: rise 5s infinite ease-in-out;
-            opacity: 0;
-        }
-        @keyframes rise {
-            0% {
-                transform: translateY(0) scale(0.6);
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-2000px) scale(1);
-                opacity: 0;
-            }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        /* Styles pour le ciel avec des nuages */
-        .cloud {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            width: 100px;
-            height: 60px;
-            top: 30%;
-            left: 20%;
-            opacity: 0.9;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            z-index: 3;
-        }
-        .cloud:before, .cloud:after {
-            content: '';
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-        }
-        .cloud:before {
-            top: -30px;
-            left: 20px;
-        }
-        .cloud:after {
-            top: -10px;
-            left: 50px;
-            width: 80px;
-            height: 80px;
-        }
-        /* Positionnement aléatoire des nuages */
-        .cloud:nth-child(2) { top: 20%; left: 70%; }
-        .cloud:nth-child(3) { top: 50%; left: 50%; }
     </style>
 </head>
-<body>
+<body class="day-mode">
 
-    <div class="cloud"></div>
-    <div class="cloud"></div>
-    <div class="cloud"></div>
+    <h1>Bienvenue dans l'Arcade !</h1>
 
-    <div class="heart-bubbles">
-        <!-- Génération de bulles plus fréquentes avec positions aléatoires -->
-        <script>
-            for (let i = 0; i < 50; i++) {
-                const bubble = document.createElement('div');
-                bubble.className = 'bubble';
-                bubble.style.left = Math.random() * 100 + 'vw';
-                bubble.style.width = bubble.style.height = Math.random() * 50 + 20 + 'px';
-                bubble.style.animationDuration = Math.random() * 5 + 3 + 's';
-                bubble.style.animationDelay = Math.random() * -5 + 's';
-                document.querySelector('.heart-bubbles').appendChild(bubble);
-            }
-        </script>
+    <!-- Grille de boutons avec 2 boutons par ligne -->
+    <div class="button-grid">
+        <a href="javascript:void(0);" class="button" onclick="checkLink('petits_sites.html')">Petits Sites Créés</a>
+        <a href="javascript:void(0);" class="button" onclick="checkLink('travail.html')">Travail</a>
+        <a href="javascript:void(0);" class="button" onclick="checkLink('chill.html')">Chill (Netflix, YouTube, Disney+)</a>
+        <a href="javascript:void(0);" class="button" onclick="checkLink('historique.html')">Historique</a>
+        <a href="javascript:void(0);" class="button" onclick="checkLink('compliments.html')">Compliments</a>
     </div>
 
-    <div class="container" id="section-1">
-        <div class="text-section">
-            <h1>Surprise, Sam !</h1>
-            <p>Tu te demandes sûrement ce qui se cache derrière ce QR code...</p>
-
-        </div>
-    </div>
-    
-    <div class="container" id="section-2">
-        <div class="text-section">
-            <p>Prépare-toi pour ce samedi 31 août !</p>
-        </div>
-    </div>
-    
-    <div class="container" id="section-3">
-        <div class="text-section">
-            <p>Nous allons passer une journée à l'aquarium, juste toi et moi ❤️</p>
-            <p class="heart">🐠💙🐟</p>
-        </div>
+    <!-- Bouton pour basculer entre le mode jour et nuit -->
+    <div class="toggle-mode-btn" onclick="toggleMode()">
+        <span class="icon" id="mode-icon">☀️</span>
     </div>
 
     <script>
-        // Script pour créer un défilement rapide et fluide entre le ciel et la mer
-        window.addEventListener('scroll', function() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollFraction = scrollTop / maxScroll;
+        function toggleMode() {
+            const body = document.body;
+            const icon = document.getElementById('mode-icon');
 
-            // Transition rapide entre le ciel et la mer
-            if (scrollFraction < 0.33) {
-                document.body.style.background = `linear-gradient(#87ceeb, #87ceeb ${(scrollFraction * 300)}%, #034f84 ${scrollFraction * 300 + 50}%)`;
-            } else if (scrollFraction < 0.66) {
-                document.body.style.background = `linear-gradient(#87ceeb, #034f84 ${scrollFraction * 300 - 100}%)`;
-            } else {
-                document.body.style.background = `linear-gradient(#034f84, #012840 ${(scrollFraction - 0.66) * 300}%)`;
-            }
+            body.classList.toggle('night-mode');
+            body.classList.toggle('day-mode');
 
-            // Afficher les bulles lorsque la section 2 est visible
-            const section2 = document.getElementById('section-2');
-            const rect = section2.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom >= 0) {
-                document.querySelector('.heart-bubbles').style.display = 'block';
+            // Basculer l'icône du bouton entre Soleil et Lune
+            if (body.classList.contains('night-mode')) {
+                icon.textContent = '🌙';
             } else {
-                document.querySelector('.heart-bubbles').style.display = 'none';
+                icon.textContent = '☀️';
             }
-        });
+        }
+
+        // Vérifie l'existence du lien
+        function checkLink(url) {
+            fetch(url, { method: 'HEAD' })
+            .then((response) => {
+                if (response.ok) {
+                    window.location.href = url;  // Le lien existe, redirige
+                } else {
+                    window.location.href = 'pas_encore.html';  // Le lien n'existe pas, redirige vers pas_encore.html
+                }
+            })
+            .catch((error) => {
+                window.location.href = 'pas_encore.html';  // Erreur (par exemple fichier introuvable)
+            });
+        }
     </script>
 
 </body>

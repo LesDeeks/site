@@ -18,13 +18,15 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Titre arcade centré avec padding pour éviter de chevaucher les boutons */
+        /* Titre arcade centré en haut */
         h1 {
             font-size: 3.5em;
             margin: 0;
             padding-top: 20px; /* Espace sous le titre */
-            text-align: center;
-            width: 100%;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%); /* Centrage horizontal */
             color: #ffffff;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
@@ -35,7 +37,7 @@
             gap: 20px;
             max-width: 600px;
             width: 100%;
-            padding: 40px 20px 0; /* Espace supplémentaire sous le titre */
+            padding: 100px 20px 0; /* Espace supplémentaire sous le titre */
         }
 
         .button {
@@ -112,24 +114,24 @@
         /* Responsiveness pour petits écrans */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5em; /* Réduction de la taille du titre sur les petits écrans */
+                font-size: 2.5em;
                 padding-top: 10px;
             }
 
             .button-grid {
                 grid-template-columns: 1fr; /* Passe en une seule colonne sur les petits écrans */
-                padding: 20px 10px 0; /* Moins d'espacement sur les petits écrans */
+                padding: 20px 10px 0;
             }
 
             .toggle-mode-btn {
                 width: 40px;
                 height: 40px;
-                font-size: 1.2em; /* Ajustement de la taille du bouton de mode */
+                font-size: 1.2em;
             }
         }
     </style>
 </head>
-<body class="day-mode">
+<body>
 
     <h1>Trouve le nom Sam :)</h1>
 
@@ -148,6 +150,30 @@
     </div>
 
     <script>
+        // Fonction pour définir les cookies
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        // Fonction pour obtenir les cookies
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // Bascule entre le mode jour et nuit
         function toggleMode() {
             const body = document.body;
             const icon = document.getElementById('mode-icon');
@@ -158,8 +184,10 @@
             // Basculer l'icône du bouton entre Soleil et Lune
             if (body.classList.contains('night-mode')) {
                 icon.textContent = '🌙';
+                setCookie('mode', 'night', 7); // Définit le mode nuit dans les cookies
             } else {
                 icon.textContent = '☀️';
+                setCookie('mode', 'day', 7); // Définit le mode jour dans les cookies
             }
         }
 
@@ -173,9 +201,26 @@
                     window.location.href = 'pas_encore.html';  // Le lien n'existe pas, redirige vers pas_encore.html
                 }
             })
-            .catch((error) => {
+            .catch(() => {
                 window.location.href = 'pas_encore.html';  // Erreur (par exemple fichier introuvable)
             });
+        }
+
+        // Applique le mode jour ou nuit à partir du cookie
+        window.onload = function() {
+            const mode = getCookie('mode');
+            const body = document.body;
+            const icon = document.getElementById('mode-icon');
+
+            if (mode === 'night') {
+                body.classList.add('night-mode');
+                body.classList.remove('day-mode');
+                icon.textContent = '🌙';
+            } else {
+                body.classList.add('day-mode');
+                body.classList.remove('night-mode');
+                icon.textContent = '☀️';
+            }
         }
     </script>
 

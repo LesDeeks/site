@@ -14,16 +14,15 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Titre arcade centré */
+        /* Titre arcade centré avec padding pour éviter de chevaucher les boutons */
         h1 {
             font-size: 3.5em;
             margin: 0;
-            position: absolute;
-            top: 20px;
+            padding-top: 20px; /* Espace sous le titre */
             text-align: center;
             width: 100%;
             color: #ffffff;
@@ -36,7 +35,7 @@
             gap: 20px;
             max-width: 600px;
             width: 100%;
-            padding: 100px 20px 0;
+            padding: 40px 20px 0; /* Espace supplémentaire sous le titre */
         }
 
         .button {
@@ -109,11 +108,30 @@
         .toggle-mode-btn .icon {
             font-size: 1.5em;
         }
+
+        /* Responsiveness pour petits écrans */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em; /* Réduction de la taille du titre sur les petits écrans */
+                padding-top: 10px;
+            }
+
+            .button-grid {
+                grid-template-columns: 1fr; /* Passe en une seule colonne sur les petits écrans */
+                padding: 20px 10px 0; /* Moins d'espacement sur les petits écrans */
+            }
+
+            .toggle-mode-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2em; /* Ajustement de la taille du bouton de mode */
+            }
+        }
     </style>
 </head>
 <body class="day-mode">
 
-    <h1>Espace (propose un nom stp j'ai pas d'idée) !</h1>
+    <h1>Espace Arcade</h1>
 
     <!-- Grille de boutons avec 2 boutons par ligne -->
     <div class="button-grid">

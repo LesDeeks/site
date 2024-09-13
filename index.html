@@ -22,22 +22,22 @@
         h1 {
             font-size: 3.5em;
             margin: 0;
-            padding-top: 20px; /* Espace sous le titre */
+            padding-top: 20px;
             position: absolute;
             top: 20px;
             left: 50%;
-            transform: translateX(-50%); /* Centrage horizontal */
+            transform: translateX(-50%);
             color: #ffffff;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
 
         .button-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Deux colonnes */
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             max-width: 600px;
             width: 100%;
-            padding: 100px 20px 0; /* Espace supplémentaire sous le titre */
+            padding: 100px 20px 0;
         }
 
         .button {
@@ -106,12 +106,11 @@
             background-color: #e67e22;
         }
 
-        /* Icône soleil et lune */
         .toggle-mode-btn .icon {
             font-size: 1.5em;
         }
 
-        /* Responsiveness pour petits écrans */
+        /* Responsive */
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5em;
@@ -119,7 +118,7 @@
             }
 
             .button-grid {
-                grid-template-columns: 1fr; /* Passe en une seule colonne sur les petits écrans */
+                grid-template-columns: 1fr;
                 padding: 20px 10px 0;
             }
 
@@ -135,7 +134,6 @@
 
     <h1>Trouve le nom Sam :)</h1>
 
-    <!-- Grille de boutons avec 2 boutons par ligne -->
     <div class="button-grid">
         <a href="javascript:void(0);" class="button" onclick="checkLink('petits_sites.html')">Petits Sites Créés</a>
         <a href="javascript:void(0);" class="button" onclick="checkLink('travail.html')">Travail</a>
@@ -144,13 +142,11 @@
         <a href="javascript:void(0);" class="button" onclick="checkLink('compliments.html')">Compliments</a>
     </div>
 
-    <!-- Bouton pour basculer entre le mode jour et nuit -->
     <div class="toggle-mode-btn" onclick="toggleMode()">
         <span class="icon" id="mode-icon">☀️</span>
     </div>
 
     <script>
-        // Fonction pour définir les cookies
         function setCookie(name, value, days) {
             let expires = "";
             if (days) {
@@ -161,7 +157,6 @@
             document.cookie = name + "=" + (value || "") + expires + "; path=/";
         }
 
-        // Fonction pour obtenir les cookies
         function getCookie(name) {
             const nameEQ = name + "=";
             const ca = document.cookie.split(';');
@@ -173,7 +168,6 @@
             return null;
         }
 
-        // Bascule entre le mode jour et nuit
         function toggleMode() {
             const body = document.body;
             const icon = document.getElementById('mode-icon');
@@ -181,32 +175,29 @@
             body.classList.toggle('night-mode');
             body.classList.toggle('day-mode');
 
-            // Basculer l'icône du bouton entre Soleil et Lune
             if (body.classList.contains('night-mode')) {
                 icon.textContent = '🌙';
-                setCookie('mode', 'night', 7); // Définit le mode nuit dans les cookies
+                setCookie('mode', 'night', 7);
             } else {
                 icon.textContent = '☀️';
-                setCookie('mode', 'day', 7); // Définit le mode jour dans les cookies
+                setCookie('mode', 'day', 7);
             }
         }
 
-        // Vérifie l'existence du lien
         function checkLink(url) {
             fetch(url, { method: 'HEAD' })
             .then((response) => {
                 if (response.ok) {
-                    window.location.href = url;  // Le lien existe, redirige
+                    window.location.href = url;
                 } else {
-                    window.location.href = 'pas_encore.html';  // Le lien n'existe pas, redirige vers pas_encore.html
+                    window.location.href = 'pas_encore.html';
                 }
             })
             .catch(() => {
-                window.location.href = 'pas_encore.html';  // Erreur (par exemple fichier introuvable)
+                window.location.href = 'pas_encore.html';
             });
         }
 
-        // Applique le mode jour ou nuit à partir du cookie
         window.onload = function() {
             const mode = getCookie('mode');
             const body = document.body;

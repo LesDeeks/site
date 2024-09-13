@@ -27,7 +27,7 @@
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            color: #ffffff;
+            color: #ecdabb;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
 
@@ -61,11 +61,11 @@
         }
 
         .day-mode .button {
-            background-color: #3498db;
+            background: linear-gradient(0.1turn, #46891d, #e0e968, #f4ee9c);
         }
 
         .day-mode .button:hover {
-            background-color: #2980b9;
+            background: linear-gradient(0.1turn, #4b8f20, #c4cb5e, #d8d48e);
         }
 
         /* Mode nuit */
@@ -75,11 +75,11 @@
         }
 
         .night-mode .button {
-            background-color: #e74c3c;
+            background: linear-gradient(0.1turn, #710e0e, #e74c3c, #f57058);
         }
 
         .night-mode .button:hover {
-            background-color: #c0392b;
+            background: linear-gradient(0.1turn, #530a0a, #c94435, #d25f4b);
         }
 
         /* Bouton de bascule jour/nuit */
@@ -132,14 +132,15 @@
 </head>
 <body>
 
-    <h1>Trouve le nom Sam :)</h1>
+    <h1>CoinCoin &#x1F986</h1>
 
     <div class="button-grid">
-        <a href="javascript:void(0);" class="button" onclick="checkLink('petits_sites.html')">Petits Sites Créés</a>
-        <a href="javascript:void(0);" class="button" onclick="checkLink('travail.html')">Travail</a>
-        <a href="javascript:void(0);" class="button" onclick="checkLink('chill.html')">Chill (Netflix, YouTube, Disney+)</a>
-        <a href="javascript:void(0);" class="button" onclick="checkLink('historique.html')">Historique</a>
-        <a href="javascript:void(0);" class="button" onclick="checkLink('compliments.html')">Compliments</a>
+        <a href="javascript:void(0);" id="1" class="button" onclick="checkLink('petits_sites.html')">Petits Sites Créés</a>
+        <a href="javascript:void(0);" id="2" class="button" onclick="checkLink('travail.html')">Travail</a>
+        <a href="javascript:void(0);" id="3" class="button" onclick="checkLink('chill.html')">Chill (Netflix, YouTube, Disney+)</a>
+        <a href="javascript:void(0);" id="4" class="button" onclick="checkLink('historique.html')">Historique</a>
+        <a href="javascript:void(0);" id="5" class="button" onclick="checkLink('compliments.html')">Compliments</a>
+        <a href="javascript:void(0);" id="6"class="button" onclick="checkLink('date.html')">Date Roulette !</a>
     </div>
 
     <div class="toggle-mode-btn" onclick="toggleMode()">
@@ -147,6 +148,14 @@
     </div>
 
     <script>
+        
+        document.getElementById('1').style.borderRadius = '30% 70% 70% 30%/ 30% 58% 42% 70%'
+        document.getElementById('2').style.borderRadius = '38% 62% 25% 75% / 65% 45% 55% 35%'
+        document.getElementById('3').style.borderRadius = '80% 20% 75% 25% / 44% 34% 66% 56%'
+        document.getElementById('4').style.borderRadius = '50% 50% 24% 76% / 38% 55% 45% 62%'
+        document.getElementById('5').style.borderRadius = '25% 75% 42% 58% / 41% 63% 37% 59%'
+        document.getElementById('6').style.borderRadius = '79% 21% 42% 58% / 63% 35% 65% 37%'
+        
         function setCookie(name, value, days) {
             let expires = "";
             if (days) {

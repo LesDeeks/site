@@ -28,7 +28,7 @@
             left: 50%;
             transform: translateX(-50%);
             color: #ecdabb;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
         }
 
         .button-grid {
@@ -41,12 +41,12 @@
         }
 
         .button {
-            padding: 59px;
             font-size: 1.5em;
             color: white;
             text-decoration: none;
-            border-radius: 10px;
             text-align: center;
+            border-radius: 10px;
+            padding: 59px;
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
@@ -113,7 +113,7 @@
         /* Responsive */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5em;
+                font-size: 3em;
                 padding-top: 10px;
             }
 
@@ -155,7 +155,7 @@
         document.getElementById('4').style.borderRadius = '50% 50% 24% 76% / 38% 55% 45% 62%'
         document.getElementById('5').style.borderRadius = '25% 75% 42% 58% / 41% 63% 37% 59%'
         document.getElementById('6').style.borderRadius = '79% 21% 42% 58% / 63% 35% 65% 37%'
-        
+
         function setCookie(name, value, days) {
             let expires = "";
             if (days) {

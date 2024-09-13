@@ -10,8 +10,11 @@ Si tu as besoin d'aide, voici un guide en français pour t'accompagner, mais je 
 
 ### 2. Vérifier l'installation
 Une fois installé, tu peux vérifier que Git fonctionne en ouvrant un terminal (ou une invite de commande) et en tapant : git --version
-Exemmple : 
+
+Exemple : 
+
 U:\>git version
+
 git version 2.45.1.windows.1
 
 Si Git est bien installé, la version de Git sera affichée.

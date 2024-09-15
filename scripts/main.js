@@ -48,11 +48,11 @@ function checkLink(url) {
         if (response.ok) {
             window.location.href = url;
         } else {
-            window.location.href = 'pas_encore.html';
+            window.location.href = 'html/pas_encore.html';
         }
     })
     .catch(() => {
-        window.location.href = 'pas_encore.html';
+        window.location.href = 'html/pas_encore.html';
     });
 }
 

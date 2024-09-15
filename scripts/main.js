@@ -1,6 +1,3 @@
-// JavaScript previously in index.html
-
-// Setting custom border radii for buttons
 document.getElementById('1').style.borderRadius = '30% 70% 70% 30%/ 30% 58% 42% 70%';
 document.getElementById('2').style.borderRadius = '38% 62% 25% 75% / 65% 45% 55% 35%';
 document.getElementById('3').style.borderRadius = '80% 20% 75% 25% / 44% 34% 66% 56%';
@@ -8,7 +5,6 @@ document.getElementById('4').style.borderRadius = '50% 50% 24% 76% / 38% 55% 45%
 document.getElementById('5').style.borderRadius = '25% 75% 42% 58% / 41% 63% 37% 59%';
 document.getElementById('6').style.borderRadius = '79% 21% 42% 58% / 63% 35% 65% 37%';
 
-// Function to set a cookie
 function setCookie(name, value, days) {
     let expires = "";
     if (days) {
@@ -19,7 +15,6 @@ function setCookie(name, value, days) {
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }
 
-// Function to get a cookie
 function getCookie(name) {
     const nameEQ = name + "=";
     const ca = document.cookie.split(';');
@@ -31,7 +26,6 @@ function getCookie(name) {
     return null;
 }
 
-// Function to toggle between day and night mode
 function toggleMode() {
     const body = document.body;
     const icon = document.getElementById('mode-icon');
@@ -48,7 +42,6 @@ function toggleMode() {
     }
 }
 
-// Function to check if a link exists
 function checkLink(url) {
     fetch(url, { method: 'HEAD' })
     .then((response) => {
@@ -63,7 +56,6 @@ function checkLink(url) {
     });
 }
 
-// Function to load the correct mode based on the cookie
 window.onload = function() {
     const mode = getCookie('mode');
     const body = document.body;

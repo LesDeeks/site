@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pas Encore Prêt</title>
+	<link rel="stylesheet" href="../css/main.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5em;
+        }
+
+        .back-arrow {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #3498db;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #3498db;
+            font-size: 1.5em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-arrow:hover {
+            background-color: #3498db;
+            color: #ffffff;
+            border-color: #2980b9;
+        }
+
+        .back-arrow:hover .icon {
+            transform: translateX(-5px);
+        }
+
+        .icon {
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Flèche circulaire de retour -->
+    <a href="index.html" class="back-arrow">
+        <span class="icon">&#8592;</span>
+    </a>
+
+    <h1>Et non ma neuneu, je n'ai pas avancé jusque là !</h1>
+
+</body>
+</html>

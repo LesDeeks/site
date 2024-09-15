@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <link rel="stylesheet" href="../css/effects.css">
+    <style>
+        body {
+            
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Titre arcade centré en haut */
+        h1 {
+            font-size: 3.5em;
+            margin: 0;
+            padding-top: 20px;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ecdabb;
+            text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 600px;
+            width: 100%;
+            padding: 100px 20px 0;
+        }
+
+        .button {
+            font-size: 1.5em;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 10px;
+            padding: 59px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Mode jour */
+        body.day-mode {
+            background-color: #f6f6f6;
+            color: #333;
+        }
+
+        .day-mode .button {
+            background: linear-gradient(0.1turn, #46891d, #e0e968, #f4ee9c);
+        }
+
+        .day-mode .button:hover {
+            background: linear-gradient(0.1turn, #4b8f20, #c4cb5e, #d8d48e);
+        }
+
+        /* Mode nuit */
+        body.night-mode {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+
+        .night-mode .button {
+            background: linear-gradient(0.1turn, #710e0e, #e74c3c, #f57058);
+        }
+
+        .night-mode .button:hover {
+            background: linear-gradient(0.1turn, #530a0a, #c94435, #d25f4b);
+        }
+
+        /* Bouton de bascule jour/nuit */
+        .toggle-mode-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #f39c12;
+            color: white;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggle-mode-btn:hover {
+            transform: scale(1.1);
+            background-color: #e67e22;
+        }
+
+        .toggle-mode-btn .icon {
+            font-size: 1.5em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3em;
+                padding-top: 10px;
+            }
+
+            .button-grid {
+                grid-template-columns: 1fr;
+                padding: 20px 10px 0;
+            }
+
+            .toggle-mode-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>CoinCoin &#x1F986</h1>
+    
+
+    <div class="button-grid">
+        <a href="javascript:void(0);" id="1" class="button" onclick="checkLink('petits_sites.html')">Petits Sites Créés</a>
+        <a href="javascript:void(0);" id="2" class="button" onclick="checkLink('travail.html')">Travail</a>
+        <a href="javascript:void(0);" id="3" class="button" onclick="checkLink('chill.html')">Chill (Netflix, YouTube, Disney+)</a>
+        <a href="javascript:void(0);" id="4" class="button" onclick="checkLink('historique.html')">Historique</a>
+        <a href="javascript:void(0);" id="5" class="button" onclick="checkLink('compliments.html')">Compliments</a>
+        <a href="javascript:void(0);" id="6"class="button" onclick="checkLink('date.html')">Date Roulette !</a>
+    </div>
+    <div class="snowflakes"></div>
+        <div class="snowflake">&#x1F986</div>
+        <div class="snowflake">&#x1F425</div>
+        <div class="snowflake">&#x1F425</div>
+        <div class="snowflake">&#x1F986</div>
+        <div class="snowflake">&#x1F425</div>
+        <div class="snowflake">&#x1F424</div>
+        <div class="snowflake">&#x1F425</div>
+        <div class="snowflake">&#x1F986</div>
+        <div class="snowflake">&#x1F986</div>
+        <div class="snowflake">&#x1F425</div>
+        <div class="snowflake">&#x1F986</div>
+        <div class="snowflake">&#x1F425</div>
+        <div class="snowflake">&#x1F424</div>
+        <div class="snowflake">&#x1F986</div>
+        <div class="snowflake">&#x1F986</div>
+</div>
+    <div class="toggle-mode-btn" onclick="toggleMode()">
+        <span class="icon" id="mode-icon">☀️</span>
+    </div>
+	
+	<script src="../scripts/main.js"></script>
+</body>
+</html>

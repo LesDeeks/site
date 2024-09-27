@@ -45,17 +45,7 @@ function toggleMode() {
 }
 
 function checkLink(url) {
-    fetch(url, { method: 'HEAD' })
-    .then((response) => {
-        if (response.ok) {
-            window.location.href = url;
-        } else {
-            window.location.href = 'html/pas_encore.html';
-        }
-    })
-    .catch(() => {
-        window.location.href = 'html/pas_encore.html';
-    });
+    window.location.href = url;
 }
 
 window.onload = function() {

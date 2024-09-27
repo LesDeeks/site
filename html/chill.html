@@ -113,17 +113,17 @@
         <div id="platformCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <a href="intent://www.netflix.com#Intent;scheme=https;package=com.netflix.mediaclient;end" target="_blank">
+                    <a href="#" onclick="openAppOrSite('netflix')">
                         <img src="../images/netflix-logo.png" alt="Netflix" class="img-fluid platform-logo">
                     </a>
                 </div>
                 <div class="carousel-item">
-                    <a href="intent://www.youtube.com#Intent;scheme=https;package=com.google.android.youtube;end" target="_blank">
+                    <a href="#" onclick="openAppOrSite('youtube')">
                         <img src="../images/youtube-logo.png" alt="YouTube" class="img-fluid platform-logo">
                     </a>
                 </div>
                 <div class="carousel-item">
-                    <a href="intent://www.disneyplus.com#Intent;scheme=https;package=com.disney.disneyplus;end" target="_blank">
+                    <a href="#" onclick="openAppOrSite('disney')">
                         <img src="../images/disneyplus-logo.png" alt="Disney Plus" class="img-fluid platform-logo">
                     </a>
                 </div>
@@ -139,5 +139,52 @@
     <a href="../index.html" class="back-button">Accueil</a>
 
     <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function openAppOrSite(platform) {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            if (/android/i.test(userAgent)) {
+                // Intent links pour Android
+                switch (platform) {
+                    case 'netflix':
+                        window.location.href = 'intent://www.netflix.com#Intent;scheme=https;package=com.netflix.mediaclient;end';
+                        break;
+                    case 'youtube':
+                        window.location.href = 'intent://www.youtube.com#Intent;scheme=https;package=com.google.android.youtube;end';
+                        break;
+                    case 'disney':
+                        window.location.href = 'intent://www.disneyplus.com#Intent;scheme=https;package=com.disney.disneyplus;end';
+                        break;
+                }
+            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                // Universal Links pour iOS
+                switch (platform) {
+                    case 'netflix':
+                        window.location.href = 'https://www.netflix.com';
+                        break;
+                    case 'youtube':
+                        window.location.href = 'https://www.youtube.com';
+                        break;
+                    case 'disney':
+                        window.location.href = 'https://www.disneyplus.com';
+                        break;
+                }
+            } else {
+                // Fallback pour les autres navigateurs (bureau, autres OS)
+                switch (platform) {
+                    case 'netflix':
+                        window.location.href = 'https://www.netflix.com';
+                        break;
+                    case 'youtube':
+                        window.location.href = 'https://www.youtube.com';
+                        break;
+                    case 'disney':
+                        window.location.href = 'https://www.disneyplus.com';
+                        break;
+                }
+            }
+        }
+    </script>
 </body>
 </html>

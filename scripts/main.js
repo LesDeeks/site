@@ -1,3 +1,5 @@
+// main.js
+
 document.getElementById('1').style.borderRadius = '30% 70% 70% 30%/ 30% 58% 42% 70%';
 document.getElementById('2').style.borderRadius = '38% 62% 25% 75% / 65% 45% 55% 35%';
 document.getElementById('3').style.borderRadius = '80% 20% 75% 25% / 44% 34% 66% 56%';

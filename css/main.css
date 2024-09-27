@@ -1,25 +1,159 @@
-body{
-    background:white;
+/* Style général pour le body */
+body {
+  background: white;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Animation des flocons de neige - Définition des animations */
+@-webkit-keyframes snowflakes-fall {
+  0% { top: -10%; }
+  100% { top: 100%; }
+}
+
+@-webkit-keyframes snowflakes-shake {
+  0% { -webkit-transform: translateX(0px); transform: translateX(0px); }
+  50% { -webkit-transform: translateX(80px); transform: translateX(80px); }
+  100% { -webkit-transform: translateX(0px); transform: translateX(0px); }
+}
+
+@keyframes snowflakes-fall {
+  0% { top: -10%; }
+  100% { top: 100%; }
+}
+
+@keyframes snowflakes-shake {
+  0% { transform: translateX(0px); }
+  50% { transform: translateX(80px); }
+  100% { transform: translateX(0px); }
+}
+
+/* Style pour les flocons de neige */
+.snowflake {
+  position: fixed;
+  top: -10%;
+  z-index: 9999;
+  user-select: none;
+  cursor: default;
+  color: #fff;
+  font-size: 1em;
+  font-family: Arial;
+  text-shadow: 0 0 1px #000;
+
+  /* Définition des animations */
+  animation-name: snowflakes-fall, snowflakes-shake;
+  animation-duration: 10s, 3s;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+  animation-play-state: running, running;
+}
+
+/* Position et délai pour chaque flocon de neige */
+.snowflake:nth-of-type(1) { left: 10%; animation-delay: 1s, 1s; }
+.snowflake:nth-of-type(2) { left: 20%; animation-delay: 6s, 0.5s; }
+.snowflake:nth-of-type(3) { left: 30%; animation-delay: 4s, 2s; }
+.snowflake:nth-of-type(4) { left: 40%; animation-delay: 2s, 2s; }
+.snowflake:nth-of-type(5) { left: 50%; animation-delay: 8s, 3s; }
+.snowflake:nth-of-type(6) { left: 60%; animation-delay: 6s, 2s; }
+.snowflake:nth-of-type(7) { left: 70%; animation-delay: 2.5s, 1s; }
+.snowflake:nth-of-type(8) { left: 80%; animation-delay: 1s, 0s; }
+.snowflake:nth-of-type(9) { left: 90%; animation-delay: 3s, 1.5s; }
+
+/* Demo Purpose Only */
+.demo {
+  font-family: 'Raleway', sans-serif;
+  color: #fff;
+  display: block;
+  margin: 0 auto;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.demo a {
+  font-family: 'Raleway', sans-serif;
+  color: #000;
+}
+
+/* Style du mode jour et nuit */
+.day-mode .button {
+  background: linear-gradient(0.1turn, #46891d, #e0e968, #f4ee9c);
+}
+
+.night-mode .button {
+  background: linear-gradient(0.1turn, #710e0e, #e74c3c, #f57058);
+}
+
+/* Bouton bascule mode jour/nuit */
+.toggle-mode-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #f39c12;
+  color: white;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-mode-btn:hover {
+  transform: scale(1.1);
+  background-color: #e67e22;
+}
+
+.toggle-mode-btn .icon {
+  font-size: 1.5em;
+}
+
+/* Style pour le texte et boutons */
+h1 {
+  font-size: 3.5em;
+  margin: 0;
+  padding-top: 20px;
+  color: #ecdabb;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.button {
+  font-size: 1.5em;
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+/* Styles Responsive */
+@media (max-width: 768px) {
+  h1 {
+      font-size: 3em;
   }
-  /* customizable snowflake styling */
-  .snowflake {
-    color: #fff;
-    font-size: 1em;
-    font-family: Arial;
-    text-shadow: 0 0 1px #000;
+
+  .button {
+      padding: 15px;
   }
-  
-  @-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%{-webkit-transform:translateX(0px);transform:translateX(0px)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}100%{-webkit-transform:translateX(0px);transform:translateX(0px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%{transform:translateX(0px)}50%{transform:translateX(80px)}100%{transform:translateX(0px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:https://proxy.everskies.com/a/https://proxy.everskies.com/a/2.5s,1s;animation-delay:https://proxy.everskies.com/a/https://proxy.everskies.com/a/2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,https://proxy.everskies.com/a/https://proxy.everskies.com/a/1.5s;animation-delay:3s,https://proxy.everskies.com/a/https://proxy.everskies.com/a/1.5s}
-  /* Demo Purpose Only*/
-  .demo {
-    font-family: 'Raleway', sans-serif;
-      color:#fff;
-      display: block;
-      margin: 0 auto;
-      padding: 15px 0;
-      text-align: center;
+
+  .toggle-mode-btn {
+      width: 40px;
+      height: 40px;
+      font-size: 1.2em;
   }
-  .demo a{
-    font-family: 'Raleway', sans-serif;
-  color: #000;		
-  }
+}
